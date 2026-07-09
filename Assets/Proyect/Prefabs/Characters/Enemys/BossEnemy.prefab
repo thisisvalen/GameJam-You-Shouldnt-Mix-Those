@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &202034804863007544
+--- !u!1 &9169777705129336521
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4535330254901898113}
-  - component: {fileID: 148595325733312491}
-  - component: {fileID: 7927234214584422822}
-  - component: {fileID: 7964470639224621229}
-  - component: {fileID: -3037242648013274518}
-  - component: {fileID: 7061749385992783088}
+  - component: {fileID: 7759358492739996686}
+  - component: {fileID: 5178711684397565298}
+  - component: {fileID: 6604053383532999958}
+  - component: {fileID: 3967591473456095722}
+  - component: {fileID: 7821384839542105936}
+  - component: {fileID: 4500796398752844591}
   m_Layer: 0
-  m_Name: PlayerProjectile
-  m_TagString: Untagged
+  m_Name: BossEnemy
+  m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4535330254901898113
+--- !u!4 &7759358492739996686
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
+  m_GameObject: {fileID: 9169777705129336521}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.3771, y: 16.20197, z: -0.99}
-  m_LocalScale: {x: 0.20552114, y: 0.2189935, z: 0.18682678}
+  m_LocalRotation: {x: -0, y: -0.99847084, z: -0, w: -0.055281606}
+  m_LocalPosition: {x: 24.971, y: 15.671, z: 4.31289}
+  m_LocalScale: {x: 2.3887, y: 2.216301, z: 1.6600748}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &148595325733312491
+  m_LocalEulerAnglesHint: {x: 0, y: -186.338, z: 0}
+--- !u!33 &5178711684397565298
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7927234214584422822
+  m_GameObject: {fileID: 9169777705129336521}
+  m_Mesh: {fileID: 4300000, guid: 170db210605ea844695dbbd5c2429940, type: 3}
+--- !u!23 &6604053383532999958
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
+  m_GameObject: {fileID: 9169777705129336521}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 41680dad0f0243748b4e228f49a2e3c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,47 +93,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7964470639224621229
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3037242648013274518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eaf6ed09fa87ce41a9fd46bd05bd0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProyectilJugador
-  velocidadBala: 12
---- !u!54 &7061749385992783088
+--- !u!54 &3967591473456095722
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202034804863007544}
+  m_GameObject: {fileID: 9169777705129336521}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -152,5 +118,49 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 96
   m_CollisionDetection: 0
+--- !u!114 &7821384839542105936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169777705129336521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f0adab3378f694185d0475bd2259fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemigoPersigue
+  comportamiento: 0
+  vidaMaxima: 300
+  "da\xF1oPorContacto": 30
+  velocidad: 1
+  rangoDeteccion: 10
+  prefabProyectil: {fileID: 0}
+  tiempoEntreDisparos: 2
+  distanciaSegura: 4
+  rangoExplosion: 1.5
+  prefabExplosion: {fileID: 0}
+  colorAlerta: {r: 1, g: 0, b: 0, a: 1}
+--- !u!65 &4500796398752844591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169777705129336521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42912182, y: 0.5520757, z: 0.46483082}
+  m_Center: {x: 0, y: -0.02673658, z: -0.02398244}

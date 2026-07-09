@@ -6,7 +6,7 @@ public class ProyectilJugador : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 2f); // Se borra sola en 2 segundos para ahorrar memoria
+        Destroy(gameObject, 0.4f); // Se borra sola en 2 segundos para ahorrar memoria
     }
 
     void Update()
@@ -18,7 +18,7 @@ public class ProyectilJugador : MonoBehaviour
 
     void OnTriggerEnter(Collider otro)
     {
-        // Si choca con un enemigo...
+        // 1. Si choca con un enemigo...
         if (otro.CompareTag("Enemigo"))
         {
             // Buscamos el script del enemigo en el objeto que tocamos
@@ -30,6 +30,12 @@ public class ProyectilJugador : MonoBehaviour
             }
 
             Destroy(gameObject); // Destruye la bala inmediatamente
+        }
+
+        // 2. --- NUEVO: Si choca contra una pared u obstáculo ---
+        if (otro.CompareTag("Pared") || otro.CompareTag("Obstaculo"))
+        {
+            Destroy(gameObject); // La bala del jugador también se destruye al chocar
         }
     }
 }

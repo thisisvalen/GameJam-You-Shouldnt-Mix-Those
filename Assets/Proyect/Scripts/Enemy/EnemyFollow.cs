@@ -6,12 +6,12 @@ public class EnemyFollow3 : MonoBehaviour
     public enum TipoComportamiento { Estandar, Kamikaze, Cobarde }
 
     [Header("Personalidad")]
-    [Tooltip("Elige cómo se comportará esta calavera desde el Inspector")]
     public TipoComportamiento comportamiento = TipoComportamiento.Estandar;
 
     [Header("Vida y Combate")]
-    public int vidaMaxima = 50; // ¡Ajusta este valor en el Inspector!
+    public int vidaMaxima = 50;
     private int vidaActual;
+    public int dañoPorContacto = 10; // NUEVO: Cuánto daño hace al tocar al jugador
 
     [Header("Movimiento")]
     public float velocidad = 3f;
@@ -33,12 +33,12 @@ public class EnemyFollow3 : MonoBehaviour
     private Renderer miRenderer;
     private Color colorOriginal;
     private bool estaExplotando = false;
-    private bool estaParpadeandoPorGolpe = false; // Evita conflictos de color
+    private bool estaParpadeandoPorGolpe = false;
 
     void Start()
     {
         posicionInicial = transform.position;
-        vidaActual = vidaMaxima; // Inicializamos la vida al máximo
+        vidaActual = vidaMaxima;
 
         GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
@@ -46,7 +46,6 @@ public class EnemyFollow3 : MonoBehaviour
             transformJugador = jugador.transform;
         }
 
-        // --- ARREGLADO: Con estas líneas básicas el enemigo lee su propio material asignado ---
         miRenderer = GetComponentInChildren<Renderer>();
         if (miRenderer != null)
         {
@@ -115,17 +114,15 @@ public class EnemyFollow3 : MonoBehaviour
         }
     }
 
-    // --- NUEVA FUNCIÓN: Recibir daño y parpadear ---
     public void RecibirDaño(int cantidad)
     {
-        if (estaExplotando) return; // Si el kamikaze ya inició su explosión, ignoramos daño
+        if (estaExplotando) return;
 
         vidaActual -= cantidad;
-        Debug.Log(gameObject.name + " recibió daño. Vida restante: " + vidaActual);
 
         if (vidaActual <= 0)
         {
-            Destroy(gameObject); // Muere si se queda sin vida
+            Destroy(gameObject);
         }
         else
         {
@@ -138,9 +135,9 @@ public class EnemyFollow3 : MonoBehaviour
         if (miRenderer != null && !estaParpadeandoPorGolpe && !estaExplotando)
         {
             estaParpadeandoPorGolpe = true;
-            miRenderer.material.color = Color.red; // Se pinta de rojo brillante
-            yield return new WaitForSeconds(0.1f); // Parpadeo súper rápido
-            miRenderer.material.color = colorOriginal; // Regresa a su color base (azul, amarillo o blanco)
+            miRenderer.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            miRenderer.material.color = colorOriginal;
             estaParpadeandoPorGolpe = false;
         }
     }
@@ -196,6 +193,23 @@ public class EnemyFollow3 : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    // --- NUEVO: FÍSICAS DE CHOQUE ---
+    void OnCollisionEnter(Collision colision)
+    {
+        // Si el objeto contra el que chocamos tiene la etiqueta "Player"
+        if (colision.gameObject.CompareTag("Player"))
+        {
+            // Buscamos el script de vida en el jugador
+            VidaJugador vida = colision.gameObject.GetComponent<VidaJugador>();
+
+            if (vida != null)
+            {
+                // Le pasamos el daño
+                vida.RecibirDaño(dañoPorContacto);
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

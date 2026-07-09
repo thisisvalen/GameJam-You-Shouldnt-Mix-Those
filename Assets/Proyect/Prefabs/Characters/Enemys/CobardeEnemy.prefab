@@ -134,11 +134,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemigoPersigue
   comportamiento: 2
   vidaMaxima: 50
-  velocidad: 4
-  rangoDeteccion: 7
+  velocidad: 6
+  rangoDeteccion: 10.67
   prefabProyectil: {fileID: 6690183864291310857, guid: 7c90207ea9f656847830a630fcc271bd, type: 3}
-  tiempoEntreDisparos: 2
-  distanciaSegura: 5.5
+  tiempoEntreDisparos: 1.5
+  distanciaSegura: 7
   rangoExplosion: 1.5
   prefabExplosion: {fileID: 0}
   colorAlerta: {r: 1, g: 0, b: 0, a: 1}

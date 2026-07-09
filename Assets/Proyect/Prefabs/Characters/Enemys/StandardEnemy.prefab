@@ -133,8 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemigoPersigue
   comportamiento: 0
+  vidaMaxima: 150
   velocidad: 3
-  rangoDeteccion: 5.45
+  rangoDeteccion: 9.65
   prefabProyectil: {fileID: 0}
   tiempoEntreDisparos: 2
   distanciaSegura: 4
