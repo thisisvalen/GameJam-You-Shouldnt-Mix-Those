@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
             if (winnerPanel != null) winnerPanel.SetActive(false);
-        if (UIManager.Instance.IsGameOver)
+        if (UIManager.Instance != null && UIManager.Instance.IsGameOver)
         {
             if (gameOverPanel != null) gameOverPanel.SetActive(true);
             if (winnerPanel != null) winnerPanel.SetActive(false);
