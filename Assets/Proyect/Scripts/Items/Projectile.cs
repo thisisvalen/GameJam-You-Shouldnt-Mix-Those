@@ -10,5 +10,4 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed, ForceMode.Impulse);
     }
-
 }
