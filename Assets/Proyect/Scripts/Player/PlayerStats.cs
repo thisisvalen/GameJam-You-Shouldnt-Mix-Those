@@ -23,8 +23,13 @@ public class PlayerStats : MonoBehaviour
     private PowerUp[] powerUps;
 
 
+    void Awake()
+    {
+        stats.ResetStats();
+    }
     private void Start()
     {
+        UIManager.Instance.IsGameOver = false;
         playerMovement = GetComponent<PlayerMovement>();
         playerActions = GetComponent<PlayerActions>();
         animator = GetComponent<Animator>();
@@ -33,7 +38,7 @@ public class PlayerStats : MonoBehaviour
         inputPlayer.Player.Crouch.Enable();
         inputPlayer.Player.Crouch.performed += ResetPowerUp;
         // Initialize player stats
-        stats.ResetStats();
+
         UIManager.Instance.ActualizarCorazones((int)stats.Health);
         playerMovement.Speed(stats.Speed, 1f);
         playerActions.ProjectilePrefab().Damage = (int)stats.Damage;
@@ -98,7 +103,7 @@ public class PlayerStats : MonoBehaviour
         // 3. Actualizamos los mensajes para mostrar el daño mitigado en la consola
         Debug.Log("¡Ouch! El enemigo infligió " + cantidad + " de daño, pero la Defensa bloqueó " + stats.Defense + ". Daño real recibido: " + dañoReal + ". Vida restante: " + stats.Health);
 
-        if (stats.Health <= 0)
+        if (stats.Health <= 0 && !GameOver)
         {
             Debug.Log("¡GAME OVER! El jugador ha sido derrotado.");
             playerActions.Deactivate();

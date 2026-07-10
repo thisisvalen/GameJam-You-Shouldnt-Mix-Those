@@ -6317,6 +6317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameOverPanel: {fileID: 0}
   winnerPanel: {fileID: 0}
+  canvasControles: {fileID: 0}
 --- !u!4 &2024040247
 Transform:
   m_ObjectHideFlags: 0
@@ -7891,7 +7892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8737955977159922112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7939,7 +7940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &8899836310165601596
 GameObject:
   m_ObjectHideFlags: 0
@@ -7975,7 +7976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

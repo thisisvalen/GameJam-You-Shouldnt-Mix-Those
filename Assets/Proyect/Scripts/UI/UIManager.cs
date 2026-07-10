@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -30,6 +31,60 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        DesactivarBotella(0);
+        DesactivarBotella(1);
+        DesactivarBotella(2);
+
+    }
+
+    void Update()
+    {
+        string escenaActual = SceneManager.GetActiveScene().name;
+        if (corazones.Exists(heart => heart == null) && escenaActual == "03_Enviroment")
+        {
+            AddCorazones();
+        }
+
+        if (botellasOrbes.Exists(bottle => bottle == null) && escenaActual == "03_Enviroment")
+        {
+            AddBotellas();
+            DesactivarBotella(0);
+            DesactivarBotella(1);
+            DesactivarBotella(2);
+        }
+    }
+
+    public void AddCorazones()
+    {
+        corazones.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject heart = GameObject.Find("Corazon_" + (i + 1));
+            if (heart == null)
+            {
+                Debug.LogWarning("Heart GameObject not found: Corazon_" + (i + 1));
+                continue;
+            }
+            Image heartImage = heart.GetComponent<Image>();
+            corazones.Add(heartImage);
+        }
+    }
+
+    public void AddBotellas()
+    {
+        botellasOrbes.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject bottle = GameObject.Find("Botella_" + (i + 1));
+
+            if (bottle == null)
+            {
+                Debug.LogWarning("Bottle GameObject not found: Botella_" + (i + 1));
+                continue;
+            }
+            Image bottleImage = bottle.GetComponent<Image>();
+            botellasOrbes.Add(bottleImage);
+        }
     }
 
     public void ActualizarCorazones(int vidasActuales)
