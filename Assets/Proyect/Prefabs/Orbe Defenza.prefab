@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   powerUpType: 2
-  value: 5
+  value: 1
 --- !u!135 &6939513246661652240
 SphereCollider:
   m_ObjectHideFlags: 0

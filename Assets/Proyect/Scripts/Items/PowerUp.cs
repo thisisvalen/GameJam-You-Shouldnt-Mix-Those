@@ -23,7 +23,19 @@ public class PowerUp : MonoBehaviour
                     break;
             }
             // Destruir el power-up después de ser recogido
-            Destroy(gameObject);
+            HidePowerUp();
         }
+    }
+
+    public void HidePowerUp()
+    {
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+    }
+
+    public void ShowPowerUp()
+    {
+        GetComponent<Renderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 }

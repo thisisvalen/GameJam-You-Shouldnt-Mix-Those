@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigidBody;
     private Animator animator;
     private float speed;
+    public bool IsCrossing { set; get; } = false;
+    private int indicator = 1;
     public void Speed(float movement, float animation)
     {
         speed = movement;
@@ -26,27 +28,34 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movement = inputPlayer.Player.Move.ReadValue<Vector2>();
+        indicator = IsCrossing ? -1 : 1;
     }
 
     void FixedUpdate()
     {
         if (Activo)
         {
+            animator.SetBool("Stunned", false);
             Mover();
             Rotar();
+        }
+        else
+        {
+            animator.SetBool("Stunned", true);
+            rigidBody.linearVelocity = Vector3.zero;
         }
     }
 
     private void Mover()
     {
-        Vector3 direccion = new Vector3(movement.x, 0, movement.y).normalized * speed;
+        Vector3 direccion = new Vector3(movement.x * indicator, 0, movement.y * indicator).normalized * speed;
         rigidBody.linearVelocity = new Vector3(direccion.x, rigidBody.linearVelocity.y, direccion.z);
         animator.SetBool("Walk", direccion.magnitude != 0);
     }
 
     private void Rotar()
     {
-        Vector3 direccion = new Vector3(movement.x, 0, movement.y).normalized;
+        Vector3 direccion = new Vector3(movement.x * indicator, 0, movement.y * indicator).normalized;
         if (direccion.magnitude > 0.1f)
         {
             // Crear la rotación hacia donde miramos
