@@ -1,21 +1,37 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private Stats stats;
     [SerializeField] private Renderer miRenderer;
     [SerializeField] private Material colorRojo;
-    public bool GameOver {set; get;} = false;
+    public bool GameOver { set; get; } = false;
+    private Input inputPlayer;
+
+    private Animator animator;
     private PlayerMovement playerMovement;
     private PlayerActions playerActions;
     private Material colorOriginal;
     private bool estaParpadeando = false;
+    private int statsCounter = 0;
+    private Coroutine stunCoroutine;
+    private bool canResetPowerUp = true;
+
+    private PowerUp[] powerUps;
+
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerActions = GetComponent<PlayerActions>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Death", false); //Por si acaso
+        inputPlayer = new Input();
+        inputPlayer.Player.Crouch.Enable();
+        inputPlayer.Player.Crouch.performed += ResetPowerUp;
         // Initialize player stats
         playerMovement.Speed(stats.Speed, 1f);
         playerActions.ProjectilePrefab().Damage = (int)stats.Damage;
@@ -23,24 +39,32 @@ public class PlayerStats : MonoBehaviour
         {
             colorOriginal = miRenderer.material;
         }
+        powerUps = FindObjectsByType<PowerUp>(FindObjectsSortMode.None);
     }
+
     public float Health => stats.Health;
     public float Damage => stats.Damage;
     public float Defense => stats.Defense;
     public float Speed => stats.Speed;
     public void SetSpeed(float value)
     {
-        playerMovement.Speed(value, value/3f);
+        playerMovement.Speed(value, value / 3f);
         stats.Speed = value;
+        statsCounter++;
+        ActivateDebuffs();
     }
     public void SetDamage(float value)
     {
         playerActions.ProjectilePrefab().Damage = (int)value;
         stats.Damage = value;
+        statsCounter++;
+        ActivateDebuffs();
     }
     public void SetDefense(float value)
     {
         stats.Defense = value;
+        statsCounter++;
+        ActivateDebuffs();
     }
     public void SetHealth(float value)
     {
@@ -61,7 +85,11 @@ public class PlayerStats : MonoBehaviour
         if (stats.Health <= 0)
         {
             Debug.Log("¡GAME OVER! El jugador ha sido derrotado.");
+            playerActions.Deactivate();
+            playerMovement.Activo = false;
             GameOver = true;
+            animator.SetBool("Death", true);
+
         }
         else
         {
@@ -79,5 +107,67 @@ public class PlayerStats : MonoBehaviour
             miRenderer.material = colorOriginal;
             estaParpadeando = false;
         }
+    }
+
+    private void ResetPowerUp(InputAction.CallbackContext ctx)
+    {
+        if (!canResetPowerUp) return; // Evitar que se reinicie el power-up si no está permitido
+        canResetPowerUp = false;
+        print("Reset PowerUp");
+        if (stunCoroutine != null) StopCoroutine(stunCoroutine);
+        stats.ResetStats();
+        statsCounter = 0;
+        playerMovement.Speed(stats.Speed, 1f);
+        playerActions.ProjectilePrefab().Damage = (int)stats.Damage;
+        playerMovement.IsCrossing = false;
+        StartCoroutine(ColdDownReset());
+        for (int i = 0; i < powerUps.Length; i++)
+        {
+            powerUps[i].ShowPowerUp();
+        }
+    }
+
+    private IEnumerator ColdDownReset()
+    {
+        yield return new WaitForSeconds(2f);
+        canResetPowerUp = true;
+    }
+
+    public void DontResetPowerUp()
+    {
+        inputPlayer.Player.Crouch.performed -= ResetPowerUp;
+    }
+
+    private void ActivateDebuffs()
+    {
+        switch (statsCounter)
+        {
+            case 2:
+                if (stunCoroutine == null) stunCoroutine = StartCoroutine(Stunned());
+                break;
+            case 3:
+                playerMovement.IsCrossing = true;
+                break;
+            default:
+                playerMovement.IsCrossing = false;
+                if (stunCoroutine != null) StopCoroutine(stunCoroutine);
+                break;
+        }
+    }
+
+    IEnumerator Stunned()
+    {
+        while (true)
+        {
+            //Tiempo aleatorio entre 6 y 10 segundos antes de volver a desactivar los controles
+            yield return new WaitForSeconds(Random.Range(6f, 10f));
+            playerMovement.Activo = false;
+            playerActions.Deactivate();
+            //Tiempo de aturdimiento
+            yield return new WaitForSeconds(2f);
+            playerMovement.Activo = true;
+            playerActions.Activate();
+        }
+
     }
 }
