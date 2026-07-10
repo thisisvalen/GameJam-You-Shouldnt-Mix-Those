@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         UIManager.Instance.IsGameOver = false;
+        GameOver = false;
         playerMovement = GetComponent<PlayerMovement>();
         playerActions = GetComponent<PlayerActions>();
         animator = GetComponent<Animator>();
@@ -55,7 +57,7 @@ public class PlayerStats : MonoBehaviour
         int enemiesAlive = GameObject.FindGameObjectsWithTag("Enemigo").Length;
         if (enemiesAlive == 0 && !GameOver)
         {
-            GameOver = true;
+            GameOver = false;
             UIManager.Instance.IsGameOver = false;
             playerActions.Deactivate();
             playerMovement.Activo = false;
@@ -103,7 +105,7 @@ public class PlayerStats : MonoBehaviour
         // 3. Actualizamos los mensajes para mostrar el daño mitigado en la consola
         Debug.Log("¡Ouch! El enemigo infligió " + cantidad + " de daño, pero la Defensa bloqueó " + stats.Defense + ". Daño real recibido: " + dañoReal + ". Vida restante: " + stats.Health);
 
-        if (stats.Health <= 0 && !GameOver)
+        if (stats.Health <= 0 && !GameOver && SceneManager.GetActiveScene().name == "03_Enviroment")
         {
             Debug.Log("¡GAME OVER! El jugador ha sido derrotado.");
             playerActions.Deactivate();

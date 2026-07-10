@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
         if (corazones.Exists(heart => heart == null) && escenaActual == "03_Enviroment")
         {
             AddCorazones();
+            IsGameOver = false;
+            gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         }
 
         if (botellasOrbes.Exists(bottle => bottle == null) && escenaActual == "03_Enviroment")
@@ -97,7 +99,7 @@ public class UIManager : MonoBehaviour
                 corazones[i].gameObject.SetActive(i < vidasActuales);
             }
         }
-
+        print("Vidas actuales: " + vidasActuales);
         if (vidasActuales <= 0 && gameManager != null)
         {
             IsGameOver = true;

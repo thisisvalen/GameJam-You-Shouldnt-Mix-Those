@@ -1334,7 +1334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7821384839542105936, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
       propertyPath: velocidad
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7821384839542105936, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
       propertyPath: rangoDeteccion
