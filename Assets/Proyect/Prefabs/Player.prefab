@@ -2144,6 +2144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   stats: {fileID: 11400000, guid: 07755a01b31dc0d459fb33630f8381d9, type: 2}
+  miRenderer: {fileID: 7591557732111814968}
+  colorRojo: {fileID: 2100000, guid: a81dd1603e5fc3b4c9366aed15a30249, type: 2}
 --- !u!1 &5727497157525631781
 GameObject:
   m_ObjectHideFlags: 0

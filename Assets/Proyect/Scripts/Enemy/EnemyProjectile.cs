@@ -23,10 +23,10 @@ public class EnemyProjectile : MonoBehaviour
         if (otro.CompareTag("Player"))
         {
             // ¡LÍNEAS ACTIVADAS! Buscamos la vida del jugador y le aplicamos el daño
-            VidaJugador vida = otro.GetComponent<VidaJugador>();
-            if (vida != null)
+            PlayerStats jugador = otro.GetComponent<PlayerStats>();
+            if (jugador != null)
             {
-                vida.RecibirDaño(daño);
+                jugador.RecibirDaño(daño);
             }
 
             Destroy(gameObject); // La bala se destruye tras impactar

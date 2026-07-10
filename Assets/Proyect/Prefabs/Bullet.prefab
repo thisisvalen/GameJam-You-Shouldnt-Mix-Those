@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1257376460794061895}
   - component: {fileID: 1436395415632723009}
   - component: {fileID: 2376434453979083151}
+  - component: {fileID: 3176497443847777234}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -73,7 +74,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcb9bfa88bd92842a394619ce6d22e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 25
+  speed: 10
+  damage: 10
+--- !u!65 &3176497443847777234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351355666732724353}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06917381, y: 0.06960416, z: 0.15740204}
+  m_Center: {x: 0.000538826, y: -0.0005148649, z: 0}
 --- !u!1001 &1280068825141914385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +161,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23770950131426194, guid: db8d6ebe0a80601458a02ea82de28877, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: db754f22d362ec540a59712cb9fc64a3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

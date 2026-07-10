@@ -33,10 +33,10 @@ public class ExplosionDaño : MonoBehaviour
         if (otro.CompareTag("Player"))
         {
             // ¡LÍNEAS ACTIVADAS!
-            VidaJugador vida = otro.GetComponent<VidaJugador>();
-            if (vida != null)
+            PlayerStats jugador = otro.GetComponent<PlayerStats>();
+            if (jugador != null)
             {
-                vida.RecibirDaño(daño);
+                jugador.RecibirDaño(daño);
             }
         }
     }

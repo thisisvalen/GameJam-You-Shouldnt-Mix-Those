@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemigoPersigue
   comportamiento: 1
   vidaMaxima: 50
+  "da\xF1oPorContacto": 1
   velocidad: 9
   rangoDeteccion: 6
   prefabProyectil: {fileID: 0}

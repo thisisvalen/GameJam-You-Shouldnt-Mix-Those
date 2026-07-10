@@ -125,6 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5dbdb0a77b52d49a83f69ea315eeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::ExplosionDa\xF1o"
-  "da\xF1o": 50
+  "da\xF1o": 10
   tiempoDeVida: 0.84
   tamanoMaximo: 8.54

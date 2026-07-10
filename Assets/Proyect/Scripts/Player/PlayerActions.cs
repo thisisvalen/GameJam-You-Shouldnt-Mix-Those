@@ -10,6 +10,10 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
 
+    public Projectile ProjectilePrefab()
+    {
+        return bulletPrefab.GetComponent<Projectile>();
+    }
 
     void Start()
     {

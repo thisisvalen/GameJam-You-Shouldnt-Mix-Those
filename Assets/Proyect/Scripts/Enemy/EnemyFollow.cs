@@ -202,12 +202,12 @@ public class EnemyFollow3 : MonoBehaviour
         if (colision.gameObject.CompareTag("Player"))
         {
             // Buscamos el script de vida en el jugador
-            VidaJugador vida = colision.gameObject.GetComponent<VidaJugador>();
+            PlayerStats jugador = colision.gameObject.GetComponent<PlayerStats>();
 
-            if (vida != null)
+            if (jugador != null)
             {
                 // Le pasamos el daño
-                vida.RecibirDaño(dañoPorContacto);
+                jugador.RecibirDaño(dañoPorContacto);
             }
         }
     }
