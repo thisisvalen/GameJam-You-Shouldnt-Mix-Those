@@ -48,8 +48,15 @@ public class PlayerStats : MonoBehaviour
     }
     public void RecibirDaño(int cantidad)
     {
-        stats.Health -= cantidad;
-        Debug.Log("¡Ouch! El jugador recibió " + cantidad + " de daño. Vida restante: " + stats.Health);
+        // 1. Calculamos el daño real restando la defensa a la cantidad de daño recibido.
+        // Usamos Mathf.Max para asegurarnos de que el daño mínimo sea 0 y nunca cure al jugador.
+        float dañoReal = Mathf.Max(0f, cantidad - stats.Defense);
+
+        // 2. Restamos el daño real calculado a la vida del jugador
+        stats.Health -= dañoReal;
+
+        // 3. Actualizamos los mensajes para mostrar el daño mitigado en la consola
+        Debug.Log("¡Ouch! El enemigo infligió " + cantidad + " de daño, pero la Defensa bloqueó " + stats.Defense + ". Daño real recibido: " + dañoReal + ". Vida restante: " + stats.Health);
 
         if (stats.Health <= 0)
         {

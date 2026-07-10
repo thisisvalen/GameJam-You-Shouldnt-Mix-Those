@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1171264ac5b270438e5dcbaab540ac6, type: 3}
   m_Name: Stats
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  health: 5
+  health: 1
   damage: 10
-  defense: 0
+  defense: 1
   speed: 3
   statChanged:
     m_PersistentCalls:

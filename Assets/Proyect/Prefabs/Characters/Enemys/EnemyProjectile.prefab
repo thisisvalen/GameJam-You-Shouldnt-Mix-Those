@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProyectilEnemigo
   velocidad: 8
   tiempoDeVida: 3
-  "da\xF1o": 1
+  "da\xF1o": 2
 --- !u!54 &3415134441894839175
 Rigidbody:
   m_ObjectHideFlags: 0

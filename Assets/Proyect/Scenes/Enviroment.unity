@@ -456,6 +456,10 @@ PrefabInstance:
       propertyPath: velocidad
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: "da\xF1oPorContacto"
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6154935015604763596, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.93
@@ -1160,6 +1164,10 @@ PrefabInstance:
       propertyPath: rangoDeteccion
       value: 5.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7821384839542105936, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
+      propertyPath: "da\xF1oPorContacto"
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9169777705129336521, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
       propertyPath: m_Name
       value: StandardEnemy (2)
@@ -1315,6 +1323,10 @@ PrefabInstance:
     - target: {fileID: 1100880866401506833, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: m_Name
       value: CobardeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: "da\xF1oPorContacto"
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6154935015604763596, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2313,6 +2325,10 @@ PrefabInstance:
       propertyPath: rangoDeteccion
       value: 6.68
       objectReference: {fileID: 0}
+    - target: {fileID: 7821384839542105936, guid: 0a2b45e39eceaf7499b813aaaa2fb634, type: 3}
+      propertyPath: "da\xF1oPorContacto"
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9169777705129336521, guid: 0a2b45e39eceaf7499b813aaaa2fb634, type: 3}
       propertyPath: m_Name
       value: BossEnemy
@@ -2658,6 +2674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3723543284109363664, guid: 8bdc6d4a5ef4ecd468f5b4d1d9481d29, type: 3}
+      propertyPath: value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6632597653264985291, guid: 8bdc6d4a5ef4ecd468f5b4d1d9481d29, type: 3}
       propertyPath: m_Name
       value: Orbe Defenza
@@ -5620,6 +5640,10 @@ PrefabInstance:
       propertyPath: rangoDeteccion
       value: 5.73
       objectReference: {fileID: 0}
+    - target: {fileID: 7821384839542105936, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
+      propertyPath: "da\xF1oPorContacto"
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9169777705129336521, guid: e2ae13bfa4b36d54a9a5f2c22172a257, type: 3}
       propertyPath: m_Name
       value: StandardEnemy (1)
@@ -6040,6 +6064,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: velocidad
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: "da\xF1oPorContacto"
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6154935015604763596, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
