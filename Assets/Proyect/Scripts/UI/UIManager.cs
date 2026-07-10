@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> botellasOrbes = new List<Image>();
 
     private GameManager gameManager;
-    public bool IsGameOver {set; get;} = false;
+    public bool IsGameOver { set; get; } = false;
 
     private void Awake()
     {
@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour
 
         if (vidasActuales <= 0 && gameManager != null)
         {
+            IsGameOver = true;
             StartCoroutine(CooldownFinal());
         }
     }
@@ -54,7 +56,6 @@ public class UIManager : MonoBehaviour
         {
             if (botellasOrbes[indiceBotella] != null)
             {
-                // Highlights or activates the bottle UI element when collected
                 botellasOrbes[indiceBotella].gameObject.SetActive(true);
             }
         }
