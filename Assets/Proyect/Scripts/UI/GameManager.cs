@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +9,12 @@ public class GameManager : MonoBehaviour
     [Header("End Screens Setup")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winnerPanel;
+    [SerializeField] private GameObject canvasControles;
 
     void Start()
     {
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
-            if (winnerPanel != null) winnerPanel.SetActive(false);
+        if (winnerPanel != null) winnerPanel.SetActive(false);
         if (UIManager.Instance != null && UIManager.Instance.IsGameOver)
         {
             if (gameOverPanel != null) gameOverPanel.SetActive(true);
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (gameOverPanel != null)gameOverPanel.SetActive(false);
+            if (gameOverPanel != null) gameOverPanel.SetActive(false);
             if (winnerPanel != null) winnerPanel.SetActive(true);
         }
     }
@@ -44,7 +47,14 @@ public class GameManager : MonoBehaviour
 
     public void CambiarEscena(string nombreEscena)
     {
-        SceneManager.LoadScene(nombreEscena);
+        if (nombreEscena.Equals("03_Enviroment"))
+        {
+            StartCoroutine(ShowControlers(nombreEscena));
+        }
+        else
+        {
+           SceneManager.LoadScene(nombreEscena);
+        }
     }
 
     public void SalirDelJuego()
@@ -67,5 +77,15 @@ public class GameManager : MonoBehaviour
             if (gameOverPanel != null) gameOverPanel = gameOverPanel.gameObject;
             if (winnerPanel != null) winnerPanel = winnerPanel.gameObject;
         }
+    }
+
+    private IEnumerator ShowControlers(string nombreEscena)
+    {
+        if (canvasControles != null)
+        {
+            canvasControles.SetActive(true);
+        }
+        yield return new WaitForSeconds(8f);
+        SceneManager.LoadScene(nombreEscena);
     }
 }
