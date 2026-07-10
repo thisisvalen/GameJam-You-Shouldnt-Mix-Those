@@ -19,17 +19,20 @@ public class PlayerActions : MonoBehaviour
     {
         inputPlayer = new Input();
         inputPlayer.Player.Attack.Enable();
+        inputPlayer.Player.Crouch.Enable();
         Activate();
     }
 
     private void Activate()
     {
         inputPlayer.Player.Attack.performed += Attack;
+        inputPlayer.Player.Crouch.performed += ResetPowerUp;
     }
 
     private void Deactivate()
     {
         inputPlayer.Player.Attack.performed -= Attack;
+        inputPlayer.Player.Crouch.performed -= ResetPowerUp;
     }
 
     private void Attack(InputAction.CallbackContext ctx)
@@ -38,6 +41,11 @@ public class PlayerActions : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         isAttacking = true;
         StartCoroutine(ColdDownAttack());
+    }
+
+    private void ResetPowerUp(InputAction.CallbackContext ctx)
+    {
+        print("Reset PowerUp");
     }
 
     private IEnumerator ColdDownAttack()
@@ -49,6 +57,8 @@ public class PlayerActions : MonoBehaviour
 
     void OnDisable()
     {
+        Deactivate();
         inputPlayer.Player.Attack.Disable();
+        inputPlayer.Player.Crouch.Disable();
     }
 }

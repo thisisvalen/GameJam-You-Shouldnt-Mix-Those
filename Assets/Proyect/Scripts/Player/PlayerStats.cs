@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour
     public void RecibirDaño(int cantidad)
     {
         stats.Health -= cantidad;
+        //Colocar aca el efecto de defensa
         Debug.Log("¡Ouch! El jugador recibió " + cantidad + " de daño. Vida restante: " + stats.Health);
 
         if (stats.Health <= 0)
