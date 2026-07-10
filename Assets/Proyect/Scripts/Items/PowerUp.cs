@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PowerUpType powerUpType;
+    [SerializeField] private float value;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayerStats playerStats = other.GetComponent<PlayerStats>();
+            switch (powerUpType)
+            {
+                case PowerUpType.VelocityBoost:
+                    playerStats.SetSpeed(value);
+                    break;
+                case PowerUpType.AttackBoost:
+                    playerStats.SetDamage(value);
+                    break;
+                case PowerUpType.DefenseBoost:
+                    playerStats.SetDefense(value);
+                    break;
+            }
+            // Destruir el power-up después de ser recogido
+            Destroy(gameObject);
+        }
     }
 }
