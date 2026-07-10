@@ -3,24 +3,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
 
     [Header("End Screens Setup")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject winnerPanel;
 
-    private void Awake()
+    void Start()
     {
-        if (Instance != null && Instance != this)
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+            if (winnerPanel != null) winnerPanel.SetActive(false);
+        if (UIManager.Instance.IsGameOver)
         {
-            Destroy(gameObject);
-            return;
+            if (gameOverPanel != null) gameOverPanel.SetActive(true);
+            if (winnerPanel != null) winnerPanel.SetActive(false);
         }
-        Instance = this;
-        
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            if (gameOverPanel != null)gameOverPanel.SetActive(false);
+            if (winnerPanel != null) winnerPanel.SetActive(true);
+        }
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -51,28 +53,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void TriggerGameOver()
+    public void TriggerFinal()
     {
         CambiarEscena("04_EndScenes");
-        // Delay execution or invoke setup on next frame to ensure scene is fully initialized
-        StartCoroutine(SetupEndScreen(false));
-    }
-
-    public void TriggerWinner()
-    {
-        CambiarEscena("04_EndScenes");
-        StartCoroutine(SetupEndScreen(true));
-    }
-
-    private System.Collections.IEnumerator SetupEndScreen(bool isWinner)
-    {
-        yield return null; // Wait 1 frame for scene objects to load
-
-        if (gameOverPanel != null && winnerPanel != null)
-        {
-            gameOverPanel.SetActive(!isWinner);
-            winnerPanel.SetActive(isWinner);
-        }
     }
 
     private void FindEndScreenPanels()
@@ -81,11 +64,8 @@ public class GameManager : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         if (canvas != null)
         {
-            Transform gameOverTransform = canvas.transform.Find("GameOver_Panel");
-            Transform winnerTransform = canvas.transform.Find("Winner_Panel");
-
-            if (gameOverTransform != null) gameOverPanel = gameOverTransform.gameObject;
-            if (winnerTransform != null) winnerPanel = winnerTransform.gameObject;
+            if (gameOverPanel != null) gameOverPanel = gameOverPanel.gameObject;
+            if (winnerPanel != null) winnerPanel = winnerPanel.gameObject;
         }
     }
 }

@@ -798,7 +798,7 @@ GameObject:
   - component: {fileID: 1169100785}
   - component: {fileID: 1169100784}
   m_Layer: 0
-  m_Name: _GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,8 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30737da445b12aa44940cd489f1c4cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  gameOverPanel: {fileID: 0}
-  winnerPanel: {fileID: 0}
+  gameOverPanel: {fileID: 622091425}
+  winnerPanel: {fileID: 909776909}
 --- !u!4 &1169100785
 Transform:
   m_ObjectHideFlags: 0

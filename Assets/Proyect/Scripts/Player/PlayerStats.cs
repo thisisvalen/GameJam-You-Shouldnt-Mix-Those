@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     private int statsCounter = 0;
     private Coroutine stunCoroutine;
     private bool canResetPowerUp = true;
-
+    private GameManager gameManager;
     private PowerUp[] powerUps;
 
 
@@ -33,6 +33,8 @@ public class PlayerStats : MonoBehaviour
         inputPlayer.Player.Crouch.Enable();
         inputPlayer.Player.Crouch.performed += ResetPowerUp;
         // Initialize player stats
+        stats.ResetStats();
+        UIManager.Instance.ActualizarCorazones((int)stats.Health);
         playerMovement.Speed(stats.Speed, 1f);
         playerActions.ProjectilePrefab().Damage = (int)stats.Damage;
         if (miRenderer != null)
@@ -40,6 +42,20 @@ public class PlayerStats : MonoBehaviour
             colorOriginal = miRenderer.material;
         }
         powerUps = FindObjectsByType<PowerUp>(FindObjectsSortMode.None);
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
+    void Update()
+    {
+        int enemiesAlive = GameObject.FindGameObjectsWithTag("Enemigo").Length;
+        if (enemiesAlive == 0 && !GameOver)
+        {
+            GameOver = true;
+            UIManager.Instance.IsGameOver = false;
+            playerActions.Deactivate();
+            playerMovement.Activo = false;
+            StartCoroutine(CoolDownGanar());
+        }
     }
 
     public float Health => stats.Health;
@@ -52,24 +68,24 @@ public class PlayerStats : MonoBehaviour
         stats.Speed = value;
         statsCounter++;
         ActivateDebuffs();
+        UIManager.Instance.ActivarBotella(2);
     }
     public void SetDamage(float value)
     {
         playerActions.ProjectilePrefab().Damage = (int)value;
         stats.Damage = value;
         statsCounter++;
+        UIManager.Instance.ActivarBotella(1);
         ActivateDebuffs();
     }
     public void SetDefense(float value)
     {
         stats.Defense = value;
         statsCounter++;
+        UIManager.Instance.ActivarBotella(0);
         ActivateDebuffs();
     }
-    public void SetHealth(float value)
-    {
-        stats.Health = value;
-    }
+
     public void RecibirDaño(int cantidad)
     {
         // 1. Calculamos el daño real restando la defensa a la cantidad de daño recibido.
@@ -78,7 +94,7 @@ public class PlayerStats : MonoBehaviour
 
         // 2. Restamos el daño real calculado a la vida del jugador
         stats.Health -= dañoReal;
-
+        UIManager.Instance.ActualizarCorazones((int)stats.Health);
         // 3. Actualizamos los mensajes para mostrar el daño mitigado en la consola
         Debug.Log("¡Ouch! El enemigo infligió " + cantidad + " de daño, pero la Defensa bloqueó " + stats.Defense + ". Daño real recibido: " + dañoReal + ". Vida restante: " + stats.Health);
 
@@ -88,6 +104,8 @@ public class PlayerStats : MonoBehaviour
             playerActions.Deactivate();
             playerMovement.Activo = false;
             GameOver = true;
+            UIManager.Instance.IsGameOver = true;
+            animator.SetBool("Stunned", false);
             animator.SetBool("Death", true);
 
         }
@@ -124,6 +142,7 @@ public class PlayerStats : MonoBehaviour
         for (int i = 0; i < powerUps.Length; i++)
         {
             powerUps[i].ShowPowerUp();
+            UIManager.Instance.DesactivarBotella(i);
         }
     }
 
@@ -161,13 +180,27 @@ public class PlayerStats : MonoBehaviour
         {
             //Tiempo aleatorio entre 6 y 10 segundos antes de volver a desactivar los controles
             yield return new WaitForSeconds(Random.Range(6f, 10f));
+            animator.SetBool("Stunned", true);
             playerMovement.Activo = false;
             playerActions.Deactivate();
             //Tiempo de aturdimiento
             yield return new WaitForSeconds(2f);
             playerMovement.Activo = true;
+            animator.SetBool("Stunned", false);
             playerActions.Activate();
         }
 
+    }
+
+    IEnumerator CoolDownGanar()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.TriggerFinal();
+    }
+
+    void OnDisable()
+    {
+        inputPlayer.Player.Crouch.performed -= ResetPowerUp;
+        inputPlayer.Player.Crouch.Disable();
     }
 }

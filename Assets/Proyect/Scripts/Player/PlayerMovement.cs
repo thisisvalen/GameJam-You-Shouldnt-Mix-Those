@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Stunned", true);
             rigidBody.linearVelocity = Vector3.zero;
         }
     }

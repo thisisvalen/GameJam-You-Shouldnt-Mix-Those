@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class UIManager : MonoBehaviour
     [Header("Bottles UI Setup")]
     [SerializeField] private List<Image> botellasOrbes = new List<Image>();
 
+    private GameManager gameManager;
+    public bool IsGameOver {set; get;} = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,6 +24,11 @@ public class UIManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     public void ActualizarCorazones(int vidasActuales)
@@ -33,9 +42,9 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (vidasActuales <= 0 && GameManager.Instance != null)
+        if (vidasActuales <= 0 && gameManager != null)
         {
-            GameManager.Instance.TriggerGameOver();
+            StartCoroutine(CooldownFinal());
         }
     }
 
@@ -49,5 +58,23 @@ public class UIManager : MonoBehaviour
                 botellasOrbes[indiceBotella].gameObject.SetActive(true);
             }
         }
+    }
+
+    public void DesactivarBotella(int indiceBotella)
+    {
+        if (indiceBotella >= 0 && indiceBotella < botellasOrbes.Count)
+        {
+            if (botellasOrbes[indiceBotella] != null)
+            {
+                // Highlights or activates the bottle UI element when collected
+                botellasOrbes[indiceBotella].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    IEnumerator CooldownFinal()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.TriggerFinal();
     }
 }
