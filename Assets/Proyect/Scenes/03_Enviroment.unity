@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CobardeEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4682412786602243094, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b42b3e6dfb8a5854cb2970b156ff0283, type: 2}
     - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: velocidad
       value: 2
@@ -1033,6 +1037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KamikazeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8643558318684692123, guid: 9afdfb30ad5a2e5468c523a95025f6ef, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b439acaa781ab7c41ae9a2a069320584, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1500,6 +1508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CobardeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4682412786602243094, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b42b3e6dfb8a5854cb2970b156ff0283, type: 2}
     - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: "da\xF1oPorContacto"
       value: 2
@@ -6345,6 +6357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CobardeEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4682412786602243094, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b42b3e6dfb8a5854cb2970b156ff0283, type: 2}
     - target: {fileID: 4952464253532565434, guid: 33b755bea51774c4fb11daade14d410c, type: 3}
       propertyPath: velocidad
       value: 2
