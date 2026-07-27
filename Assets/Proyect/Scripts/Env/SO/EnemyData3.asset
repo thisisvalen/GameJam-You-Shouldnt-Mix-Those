@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160bf7f7fd950e84680ee307dac1bd03, type: 3}
+  m_Name: EnemyData3
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  displayName: KamikazeEnemy
+  type: 2
+  prefab: {fileID: 2867216407406703870, guid: 9afdfb30ad5a2e5468c523a95025f6ef, type: 3}
+  threatCost: 4
+  minWave: 4
+  baseWeight: 4
+  weightGrowthPerWave: 4
+  poolPrewarm: 5
